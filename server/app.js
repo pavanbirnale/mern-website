@@ -1,16 +1,13 @@
 const mongoose = require('mongoose'); 
 const express= require("express");
 const dotenv= require('dotenv')
-// const DB = 'mongodb+srv://birnalepavan:12345@cluster0.ytwcsvw.mongodb.net/mern_stack?retryWrites=true&w=majority';
 
+// dot env network 
 dotenv.config({path:'./config.env'});
-const DB = process.env.DATABASE;
-mongoose.connect(DB).then(()=>{
-  console.log('connection successful');
-}).catch((error)=>{
-  console.log(error);
-});
-const port = 3000;
+require('./db/conn')
+const PORT = process.env.PORT ;
+
+
 const app= express();
 
 // middleware
@@ -43,6 +40,6 @@ app.get('/sign-up',(req,res)=>{
   res.send("hello from sign-Up page");
 })
 
-app.listen(port,()=>{
-    console.log(`listing to the port no ${port}`);
+app.listen(PORT,()=>{
+    console.log(`listing to the port ${PORT}`);
 })
