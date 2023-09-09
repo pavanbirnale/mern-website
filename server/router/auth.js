@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require("bcrypt")
 require('../db/conn');
 const User = require('../model/userSchema');
 const e = require('express');
@@ -29,29 +30,35 @@ router.post('/register', async (req, res) => {
 
 // login route
 
-router.post('/sign-in',async(req,res)=>{
- try {
-    const {email,password} = req.body;
-     if(!email || ! password)
-     {
-        return res.status(400).json({error:"please filled the the data"});
-     }
+router.post('/sign-in', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) 
+        {
+            return res.status(400).json({ error: "please filled the the data" });
+        }
+        else
+        {
+            const userLogin = await User.findOne({ email: email });
+            if (userLogin) 
+            {
+                const isMatch = await bcrypt.compare(password, userLogin.password);
 
+                if(!isMatch)
+                {
+                    console.log("password not match");
+                   res.status(400).json({error: "password not match"});
+                }else{
+                    console.log("user sign-in successfully.");
+                    res.status(201).json({message: "user sign-in successfully."});
+                }
+            }
+           
+        }
 
-     const userLogin = await User.findOne({email:email});
-     if(userLogin)
-     {
-          console.log("user login Successfully");
-          res.json({message:"user login Successfully"});
-     }else
-     {
-        console.log("user Error");
-        res.json({message:"user Error"});
-     }
-       
- } catch (error) {
-    console.log(error);
- }
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 
