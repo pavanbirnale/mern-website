@@ -1,11 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from '../images/pawan_logo.png';
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light mt-0">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">PAWAN</a>
+          <NavLink className="navbar-brand" to="/">
+            <img src={logo} alt="pawan logo" className='logo'/>
+          </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
