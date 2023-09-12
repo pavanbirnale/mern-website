@@ -1,5 +1,6 @@
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import EmailIcon from '@mui/icons-material/Email';
 import WorkIcon from '@mui/icons-material/Work';
 import NoEncryptionIcon from '@mui/icons-material/NoEncryption';
