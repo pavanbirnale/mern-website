@@ -53,21 +53,34 @@ color: red;
 }
 
 /* about page */
+
 .about_page{
    width: 100vw;
    height: 100vh;
    display: grid;
    place-items: center;
 }
-.row-1{
-   display: flex;
+
+.about_container{
    border: 2px solid black;
+   width: 50%;
+   height: 90vh;
 }
-.row-1 img{
-   width: 10vw;
-   height: 25vh;
+.row-1{
+   width: 100%;
+   height: 40%;
+ 
 }
-.about_name{
-   display: flex;
-   justify-content: center;
+
+.photo img{
+  
+   width: 22vw;
+   height: 35vh;
+}
+
+.about_row-2_contain{
+ 
+   border: 2px solid red;
+   width: 30%;
+   height: 50vh;
 }
