@@ -3,7 +3,12 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <h1>we are the mern Developers</h1>
+      <div className="home-container">
+        <div className="home-contain">
+          <h4>Welcome</h4>
+          <h1>I'm MERN Developer...!</h1>
+        </div>
+      </div>
     </>
   )
 }
