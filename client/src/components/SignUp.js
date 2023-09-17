@@ -7,9 +7,9 @@ import NoEncryptionIcon from '@mui/icons-material/NoEncryption';
 import image from '../images/signUp.svg';
 import { NavLink } from 'react-router-dom';
 const SignUp = () => {
-const history = useHistory()
+
   const [user, setUser] = useState({
-    name: "", email: "", work: "", password: "", cPassword: ""
+    name: "", email: "",phone:"", work: "", password: "", cPassword: ""
   })
 
 
@@ -19,7 +19,32 @@ const history = useHistory()
     setUser({ ...user, [name]: value });
   }
 
- 
+  const post = async (e) => {
+    e.preventDefault();
+    const { name, email, phone, work, password, cPassword } = user;
+
+    const res = await fetch("/register", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        name, email, phone,work, password, cPassword
+      })
+
+    });
+
+    const data = await res.json();
+
+    if(res.status===422 || !data){
+      window.alert("Invalid Registration..!");
+      console.log("Invalid Registration..!");
+    }else{
+      window.alert("Registration Successful...!");
+      console.log("Registration Successful...!");
+    }
+    
+  }
 
   return (
     <>
@@ -57,6 +82,18 @@ const history = useHistory()
                             <input type="email" id="form3Example3c" className="form-control"
                               name="email"
                               value={user.email}
+                              onChange={inputHandler}
+                              placeholder='Enter your Email' />
+                          </div>
+                        </div>
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                          <div className="form-outline flex-fill mb-0">
+                            <EmailIcon />
+                            <label className="form-label" htmlFor="form3Example3c" >Your Phone</label>
+                            <input type="Number" id="form3Example3c" className="form-control"
+                              name="phone"
+                              value={user.phone}
                               onChange={inputHandler}
                               placeholder='Enter your Email' />
                           </div>
