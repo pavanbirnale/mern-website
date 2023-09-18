@@ -1,10 +1,11 @@
-import React, { useState,useHistory } from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import EmailIcon from '@mui/icons-material/Email';
 import WorkIcon from '@mui/icons-material/Work';
 import NoEncryptionIcon from '@mui/icons-material/NoEncryption';
-import image from '../images/signUp.svg';
+import signUpPic from '../images/signUp.svg';
 import { NavLink } from 'react-router-dom';
 const SignUp = () => {
 
@@ -12,7 +13,7 @@ const SignUp = () => {
     name: "", email: "",phone:"", work: "", password: "", cPassword: ""
   })
 
-
+const navigate = useNavigate();
   const inputHandler = (e) => {
     const { name, value } = e.target;
     console.log(e);
@@ -42,6 +43,7 @@ const SignUp = () => {
     }else{
       window.alert("Registration Successful...!");
       console.log("Registration Successful...!");
+      navigate("/login");
     }
     
   }
@@ -89,7 +91,7 @@ const SignUp = () => {
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
-                            <EmailIcon />
+                            <SmartphoneIcon />
                             <label className="form-label" htmlFor="form3Example3c" >Your Phone</label>
                             <input type="Number" id="form3Example3c" className="form-control"
                               name="phone"
@@ -157,8 +159,8 @@ const SignUp = () => {
                     </div>
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center flex-column order-1 order-lg-2">
 
-                      <img src={image}
-                        className="img-fluid" alt="sign image" />
+                      <img src={signUpPic}
+                        className="img-fluid" alt="signpic" />
                       <div className="signup-image">
                         <p>already registered ?<span><NavLink to='/login'>LogIn</NavLink></span></p>
                       </div>
@@ -174,4 +176,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp;
